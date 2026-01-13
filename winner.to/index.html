@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>winner.to - Сообщество CS2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-purple: #b967ff;
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00ffff;
+            --dark-bg: #0a0a14;
+            --darker-bg: #05050a;
+            --card-bg: rgba(15, 15, 25, 0.85);
+            --text-light: #f0f0ff;
+            --text-dim: #b0b0d0;
+            --accent-1: #ff00aa;
+            --accent-2: #7700ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(120, 0, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 0, 200, 0.1) 0%, transparent 20%);
+        }
+
+        h1, h2, h3, h4, .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        .cyber-border {
+            position: relative;
+            border: 2px solid transparent;
+            background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+                      linear-gradient(45deg, var(--neon-purple), var(--neon-pink), var(--neon-cyan)) border-box;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(185, 103, 255, 0.3);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--neon-purple);
+            box-shadow: 0 0 20px rgba(185, 103, 255, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(185, 103, 255, 0.5);
+        }
+
+        .logo span {
+            color: var(--neon-cyan);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--neon-cyan);
+            background-color: rgba(0, 255, 255, 0.1);
+        }
+
+        nav a.active {
+            color: var(--neon-pink);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 10%;
+            width: 80%;
+            height: 2px;
+            background: linear-gradient(to right, var(--neon-purple), var(--neon-pink));
+            border-radius: 2px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-neon {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            color: white;
+            box-shadow: 0 0 15px rgba(185, 103, 255, 0.5);
+        }
+
+        .btn-neon:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(185, 103, 255, 0.8);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 1px solid var(--neon-cyan);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 2rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            background: linear-gradient(to right, var(--neon-cyan), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            padding: 0 1rem;
+        }
+
+        .section-title::before, .section-title::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--neon-purple));
+        }
+
+        .section-title::before {
+            left: 0;
+        }
+
+        .section-title::after {
+            right: 0;
+            background: linear-gradient(to left, transparent, var(--neon-purple));
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 3rem 0;
+            margin-bottom: 4rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(to right, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            filter: drop-shadow(0 0 20px rgba(185, 103, 255, 0.5));
+        }
+
+        /* VIP Packages */
+        .vip-packages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .vip-card {
+            padding: 2rem;
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vip-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px rgba(185, 103, 255, 0.4);
+        }
+
+        .vip-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(185, 103, 255, 0.3);
+        }
+
+        .vip-name {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vip-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+
+        .vip-period {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .vip-features {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .vip-features ul {
+            list-style: none;
+        }
+
+        .vip-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .vip-features li:before {
+            content: '►';
+            color: var(--neon-cyan);
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        .vip-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        /* Servers Section */
+        .servers-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .server-card {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .server-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--neon-cyan);
+        }
+
+        .server-name {
+            font-size: 1.5rem;
+            color: var(--neon-pink);
+            margin-bottom: 0.5rem;
+        }
+
+        .server-ip {
+            background-color: rgba(0, 255, 255, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            border: 1px solid var(--neon-cyan);
+        }
+
+        .server-players {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .server-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+
+        .status-online {
+            background-color: rgba(0, 255, 0, 0.2);
+            color: #00ff00;
+            border: 1px solid #00ff00;
+        }
+
+        .status-offline {
+            background-color: rgba(255, 0, 0, 0.2);
+            color: #ff5555;
+            border: 1px solid #ff5555;
+        }
+
+        /* Contacts & Payment */
+        .contacts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-cyan);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 1rem;
+            color: var(--neon-pink);
+        }
+
+        .contact-card a {
+            color: var(--text-light);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .payment-info {
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .payment-info h3 {
+            color: var(--neon-pink);
+            margin-bottom: 1rem;
+        }
+
+        .bank-card {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem;
+            background-color: rgba(20, 20, 40, 0.7);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .bank-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--accent-1);
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            margin-top: 3rem;
+            padding: 2rem;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(185, 103, 255, 0.3);
+            padding-bottom: 1rem;
+        }
+
+        .admin-tab {
+            padding: 0.5rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--neon-purple);
+            color: var(--text-light);
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .admin-tab:hover {
+            background-color: rgba(185, 103, 255, 0.2);
+        }
+
+        .admin-tab.active {
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            color: white;
+        }
+
+        .admin-content {
+            display: none;
+        }
+
+        .admin-content.active {
+            display: block;
+        }
+
+        .admin-form {
+            display: grid;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            color: var(--neon-cyan);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.8rem;
+            background-color: rgba(20, 20, 40, 0.7);
+            border: 1px solid var(--neon-purple);
+            border-radius: 4px;
+            color: var(--text-light);
+            font-family: 'Exo 2', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(185, 103, 255, 0.3);
+            margin-top: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-cyan);
+        }
+
+        .copyright {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Scroll to payment function */
+        .highlight {
+            animation: highlight-pulse 2s ease-in-out 3;
+        }
+
+        @keyframes highlight-pulse {
+            0%, 100% { background-color: transparent; }
+            50% { background-color: rgba(185, 103, 255, 0.2); }
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(185, 103, 255, 0.5);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(185, 103, 255, 0.3);
+        }
+
+        .modal-header h3 {
+            color: var(--neon-pink);
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--neon-cyan);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            main {
+                margin-top: 140px;
+                padding: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .admin-tabs {
+                flex-direction: column;
+            }
+            
+            .server-ip {
+                font-size: 0.9rem;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="cyber-border">
+        <div class="nav-container">
+            <div class="logo">winner<span>.to</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Главная</a></li>
+                    <li><a href="#vip">VIP Привилегии</a></li>
+                    <li><a href="#servers">Сервера</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                    <li><a href="#admin" id="admin-link">Админ-панель</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline" id="steam-login"><i class="fab fa-steam"></i> Войти через Steam</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>Сообщество <span>CS2</span> нового поколения</h1>
+                <p>Присоединяйся к лучшим серверам Counter-Strike 2 с уникальными возможностями, модами и активным комьюнити. Получи VIP-привилегии и улучши свой игровой опыт!</p>
+                <div class="hero-buttons">
+                    <a href="#vip" class="btn btn-neon">Купить VIP</a>
+                    <a href="#servers" class="btn btn-outline">Наши сервера</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://cdn-icons-png.flaticon.com/512/871/871366.png" alt="CS2 Icon" style="max-width: 400px;">
+            </div>
+        </section>
+
+        <!-- VIP Packages -->
+        <section id="vip">
+            <div class="section-title">
+                <h2>VIP Привилегии</h2>
+            </div>
+            <div class="vip-packages">
+                <!-- Low VIP -->
+                <div class="vip-card cyber-border">
+                    <div class="vip-header">
+                        <h3 class="vip-name" style="color: #00ff88;">Low</h3>
+                        <div class="vip-price">20₽</div>
+                        <div class="vip-period">на 2 недели</div>
+                        <div class="vip-price">100₽</div>
+                        <div class="vip-period">навсегда</div>
+                    </div>
+                    <div class="vip-features">
+                        <ul>
+                            <li>Баннихоп на всех серверах</li>
+                            <li>1 шприц для лечения</li>
+                            <li>Тег "Low" в чате</li>
+                            <li>Доступ к паттернам скинов</li>
+                            <li>Флоат в скинченжере</li>
+                        </ul>
+                    </div>
+                    <div class="vip-buttons">
+                        <a href="#payment" class="btn btn-neon buy-btn" data-vip="Low" data-period="2 недели" data-price="20">Купить на 2 недели</a>
+                        <a href="#payment" class="btn btn-outline buy-btn" data-vip="Low" data-period="навсегда" data-price="100">Купить навсегда</a>
+                    </div>
+                </div>
+
+                <!-- Nice VIP -->
+                <div class="vip-card cyber-border">
+                    <div class="vip-header">
+                        <h3 class="vip-name" style="color: #ffaa00;">Nice</h3>
+                        <div class="vip-price">100₽</div>
+                        <div class="vip-period">на месяц</div>
+                        <div class="vip-price">300₽</div>
+                        <div class="vip-period">навсегда</div>
+                    </div>
+                    <div class="vip-features">
+                        <ul>
+                            <li><strong>Всё из пакета Low</strong></li>
+                            <li>Двойной прыжок на всех серверах</li>
+                            <li>2 шприца вместо 1</li>
+                            <li>Ускоренный баннихоп</li>
+                            <li>Доступ к Paint</li>
+                        </ul>
+                    </div>
+                    <div class="vip-buttons">
+                        <a href="#payment" class="btn btn-neon buy-btn" data-vip="Nice" data-period="месяц" data-price="100">Купить на месяц</a>
+                        <a href="#payment" class="btn btn-outline buy-btn" data-vip="Nice" data-period="навсегда" data-price="300">Купить навсегда</a>
+                    </div>
+                </div>
+
+                <!-- Escape VIP -->
+                <div class="vip-card cyber-border">
+                    <div class="vip-header">
+                        <h3 class="vip-name" style="color: #ff0066;">Escape</h3>
+                        <div class="vip-price">200₽</div>
+                        <div class="vip-period">на месяц</div>
+                        <div class="vip-price">550₽</div>
+                        <div class="vip-period">навсегда</div>
+                    </div>
+                    <div class="vip-features">
+                        <ul>
+                            <li><strong>Всё из пакетов Low и Nice</strong></li>
+                            <li>3 шприца вместо 1-2</li>
+                            <li>3 прыжка вместо 2-1</li>
+                            <li>Максимальная скорость на баннихоп</li>
+                            <li>Доступ к артефактам (ускорение, доп прыжок, гравитация и др.)</li>
+                        </ul>
+                    </div>
+                    <div class="vip-buttons">
+                        <a href="#payment" class="btn btn-neon buy-btn" data-vip="Escape" data-period="месяц" data-price="200">Купить на месяц</a>
+                        <a href="#payment" class="btn btn-outline buy-btn" data-vip="Escape" data-period="навсегда" data-price="550">Купить навсегда</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Servers Section -->
+        <section id="servers">
+            <div class="section-title">
+                <h2>Наши Сервера</h2>
+            </div>
+            <div class="servers-container">
+                <!-- Server 1 -->
+                <div class="server-card cyber-border" data-server="1">
+                    <div class="server-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="server-name" id="server1-name">BunnyHop Pro</h3>
+                    <div class="server-ip" id="server1-ip">winner.to:27015</div>
+                    <div class="server-players">
+                        <span id="server1-players">12</span>/64 игроков онлайн
+                    </div>
+                    <p class="server-desc" id="server1-desc">Сервер с продвинутым баннихопом и тренировками</p>
+                    <div class="server-status status-online" id="server1-status">● ONLINE</div>
+                    <button class="btn btn-outline copy-ip-btn" style="margin-top: 1rem;" data-ip="winner.to:27015">
+                        <i class="fas fa-copy"></i> Скопировать IP
+                    </button>
+                </div>
+
+                <!-- Server 2 -->
+                <div class="server-card cyber-border" data-server="2">
+                    <div class="server-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3 class="server-name" id="server2-name">DeathMatch VIP</h3>
+                    <div class="server-ip" id="server2-ip">winner.to:27016</div>
+                    <div class="server-players">
+                        <span id="server2-players">24</span>/64 игроков онлайн
+                    </div>
+                    <p class="server-desc" id="server2-desc">Эксклюзивный DM для VIP игроков с улучшениями</p>
+                    <div class="server-status status-online" id="server2-status">● ONLINE</div>
+                    <button class="btn btn-outline copy-ip-btn" style="margin-top: 1rem;" data-ip="winner.to:27016">
+                        <i class="fas fa-copy"></i> Скопировать IP
+                    </button>
+                </div>
+
+                <!-- Server 3 -->
+                <div class="server-card cyber-border" data-server="3">
+                    <div class="server-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="server-name" id="server3-name">Survival Escape</h3>
+                    <div class="server-ip" id="server3-ip">winner.to:27017</div>
+                    <div class="server-players">
+                        <span id="server3-players">32</span>/64 игроков онлайн
+                    </div>
+                    <p class="server-desc" id="server3-desc">Выживание с артефактами и уникальными модами</p>
+                    <div class="server-status status-online" id="server3-status">● ONLINE</div>
+                    <button class="btn btn-outline copy-ip-btn" style="margin-top: 1rem;" data-ip="winner.to:27017">
+                        <i class="fas fa-copy"></i> Скопировать IP
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacts & Payment -->
+        <section id="contacts">
+            <div class="section-title">
+                <h2>Контакты и Оплата</h2>
+            </div>
+            <div class="contacts-container">
+                <div class="contact-card cyber-border">
+                    <div class="contact-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <h3>Telegram</h3>
+                    <p>Свяжитесь со мной для консультации и помощи:</p>
+                    <a href="https://t.me/cs2hueta" target="_blank">@cs2hueta</a>
+                </div>
+                <div class="contact-card cyber-border">
+                    <div class="contact-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>Discord Сервер</h3>
+                    <p>Присоединяйтесь к нашему Discord сообществу:</p>
+                    <a href="https://discord.gg/arPR2fpi" target="_blank">https://discord.gg/arPR2fpi</a>
+                </div>
+            </div>
+            
+            <div id="payment" class="payment-info cyber-border">
+                <h3>Реквизиты для оплаты</h3>
+                <p>После оплаты пришлите чек в Telegram @cs2hueta с указанием вашего Steam ID и выбранной привилегии.</p>
+                
+                <div class="bank-card">
+                    <div class="bank-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div>
+                        <h4>Тинькофф Банк</h4>
+                        <p><strong>2200 7020 0981 5999</strong></p>
+                        <p>МИР Н.Ч</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; padding: 1.5rem; background-color: rgba(20, 20, 40, 0.7); border-radius: 8px;">
+                    <h4 style="color: var(--neon-cyan); margin-bottom: 1rem;">Инструкция по покупке:</h4>
+                    <ol style="padding-left: 1.5rem;">
+                        <li style="margin-bottom: 0.5rem;">Выберите нужную привилегию и нажмите "Купить"</li>
+                        <li style="margin-bottom: 0.5rem;">Оплатите выбранную сумму на указанные реквизиты</li>
+                        <li style="margin-bottom: 0.5rem;">Сделайте скриншот чека об оплате</li>
+                        <li style="margin-bottom: 0.5rem;">Напишите в Telegram @cs2hueta: пришлите чек, ваш Steam ID и название привилегии</li>
+                        <li style="margin-bottom: 0.5rem;">В течение 24 часов ваша привилегия будет активирована</li>
+                    </ol>
+                </div>
+                
+                <div id="selected-vip-info" style="margin-top: 2rem; padding: 1.5rem; display: none;" class="cyber-border">
+                    <h4 style="color: var(--neon-pink);">Вы выбрали:</h4>
+                    <p>Привилегия: <span id="selected-vip-name" style="font-weight: bold;"></span></p>
+                    <p>Срок: <span id="selected-vip-period" style="font-weight: bold;"></span></p>
+                    <p>Сумма к оплате: <span id="selected-vip-price" style="font-weight: bold;"></span>₽</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel -->
+        <section id="admin">
+            <div class="section-title">
+                <h2>Админ-панель</h2>
+            </div>
+            <div class="admin-panel cyber-border">
+                <div id="admin-login-section">
+                    <h3 style="color: var(--neon-pink); text-align: center; margin-bottom: 2rem;">Вход в админ-панель</h3>
+                    <div class="admin-form">
+                        <div class="form-group">
+                            <label for="admin-login">Логин:</label>
+                            <input type="text" id="admin-login" placeholder="Введите логин">
+                        </div>
+                        <div class="form-group">
+                            <label for="admin-password">Пароль:</label>
+                            <input type="password" id="admin-password" placeholder="Введите пароль">
+                        </div>
+                        <button class="btn btn-neon" id="admin-login-btn">Войти</button>
+                        <p style="text-align: center; margin-top: 1rem; color: var(--text-dim); font-size: 0.9rem;">
+                            По умолчанию: admin / admin123
+                        </p>
+                    </div>
+                </div>
+
+                <div id="admin-content" style="display: none;">
+                    <div class="admin-tabs">
+                        <button class="admin-tab active" data-tab="servers">Управление серверами</button>
+                        <button class="admin-tab" data-tab="vip">Выдача VIP</button>
+                        <button class="admin-tab" data-tab="users">Пользователи</button>
+                        <button class="admin-tab" data-tab="settings">Настройки</button>
+                    </div>
+
+                    <!-- Servers Management -->
+                    <div class="admin-content active" id="tab-servers">
+                        <h3 style="color: var(--neon-cyan); margin-bottom: 1.5rem;">Управление серверами</h3>
+                        
+                        <!-- Server 1 Settings -->
+                        <div class="cyber-border" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+                            <h4 style="color: var(--neon-pink); margin-bottom: 1rem;">Сервер 1</h4>
+                            <div class="admin-form">
+                                <div class="form-group">
+                                    <label for="edit-server1-name">Название сервера:</label>
+                                    <input type="text" id="edit-server1-name" value="BunnyHop Pro">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server1-ip">IP адрес и порт:</label>
+                                    <input type="text" id="edit-server1-ip" value="winner.to:27015">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server1-desc">Описание:</label>
+                                    <textarea id="edit-server1-desc" rows="2">Сервер с продвинутым баннихопом и тренировками</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server1-status">Статус:</label>
+                                    <select id="edit-server1-status">
+                                        <option value="online">Online</option>
+                                        <option value="offline">Offline</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server1-players">Количество игроков:</label>
+                                    <input type="number" id="edit-server1-players" value="12" min="0" max="64">
+                                </div>
+                                <button class="btn btn-neon save-server-btn" data-server="1">Сохранить изменения</button>
+                            </div>
+                        </div>
+
+                        <!-- Server 2 Settings -->
+                        <div class="cyber-border" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+                            <h4 style="color: var(--neon-pink); margin-bottom: 1rem;">Сервер 2</h4>
+                            <div class="admin-form">
+                                <div class="form-group">
+                                    <label for="edit-server2-name">Название сервера:</label>
+                                    <input type="text" id="edit-server2-name" value="DeathMatch VIP">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server2-ip">IP адрес и порт:</label>
+                                    <input type="text" id="edit-server2-ip" value="winner.to:27016">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server2-desc">Описание:</label>
+                                    <textarea id="edit-server2-desc" rows="2">Эксклюзивный DM для VIP игроков с улучшениями</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server2-status">Статус:</label>
+                                    <select id="edit-server2-status">
+                                        <option value="online">Online</option>
+                                        <option value="offline">Offline</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server2-players">Количество игроков:</label>
+                                    <input type="number" id="edit-server2-players" value="24" min="0" max="64">
+                                </div>
+                                <button class="btn btn-neon save-server-btn" data-server="2">Сохранить изменения</button>
+                            </div>
+                        </div>
+
+                        <!-- Server 3 Settings -->
+                        <div class="cyber-border" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+                            <h4 style="color: var(--neon-pink); margin-bottom: 1rem;">Сервер 3</h4>
+                            <div class="admin-form">
+                                <div class="form-group">
+                                    <label for="edit-server3-name">Название сервера:</label>
+                                    <input type="text" id="edit-server3-name" value="Survival Escape">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server3-ip">IP адрес и порт:</label>
+                                    <input type="text" id="edit-server3-ip" value="winner.to:27017">
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server3-desc">Описание:</label>
+                                    <textarea id="edit-server3-desc" rows="2">Выживание с артефактами и уникальными модами</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server3-status">Статус:</label>
+                                    <select id="edit-server3-status">
+                                        <option value="online">Online</option>
+                                        <option value="offline">Offline</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="edit-server3-players">Количество игроков:</label>
+                                    <input type="number" id="edit-server3-players" value="32" min="0" max="64">
+                                </div>
+                                <button class="btn btn-neon save-server-btn" data-server="3">Сохранить изменения</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VIP Management -->
+                    <div class="admin-content" id="tab-vip">
+                        <h3 style="color: var(--neon-cyan); margin-bottom: 1.5rem;">Выдача VIP привилегий</h3>
+                        <div class="admin-form">
+                            <div class="form-group">
+                                <label for="vip-steamid">Steam ID игрока:</label>
+                                <input type="text" id="vip-steamid" placeholder="76561198000000000">
+                            </div>
+                            <div class="form-group">
+                                <label for="vip-type">Тип VIP:</label>
+                                <select id="vip-type">
+                                    <option value="low">Low (100₽ навсегда)</option>
+                                    <option value="nice">Nice (300₽ навсегда)</option>
+                                    <option value="escape">Escape (550₽ навсегда)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vip-period">Срок действия:</label>
+                                <select id="vip-period">
+                                    <option value="2weeks">2 недели</option>
+                                    <option value="1month">1 месяц</option>
+                                    <option value="forever">Навсегда</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="vip-comment">Комментарий:</label>
+                                <textarea id="vip-comment" placeholder="Причина выдачи, дополнительная информация"></textarea>
+                            </div>
+                            <button class="btn btn-neon" id="grant-vip-btn">Выдать VIP</button>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h4 style="color: var(--neon-pink);">Последние выданные привилегии</h4>
+                            <div id="vip-history" style="margin-top: 1rem;">
+                                <!-- История будет добавляться здесь -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Users Management -->
+                    <div class="admin-content" id="tab-users">
+                        <h3 style="color: var(--neon-cyan); margin-bottom: 1.5rem;">Управление пользователями</h3>
+                        <div class="admin-form">
+                            <div class="form-group">
+                                <label for="search-user">Поиск пользователя:</label>
+                                <input type="text" id="search-user" placeholder="Steam ID, никнейм или email">
+                            </div>
+                            <button class="btn btn-outline">Найти</button>
+                        </div>
+                        
+                        <div style="margin-top: 2rem;">
+                            <h4 style="color: var(--neon-pink);">Последние активные пользователи</h4>
+                            <!-- Список пользователей будет здесь -->
+                        </div>
+                    </div>
+
+                    <!-- Settings -->
+                    <div class="admin-content" id="tab-settings">
+                        <h3 style="color: var(--neon-cyan); margin-bottom: 1.5rem;">Настройки сайта</h3>
+                        <div class="admin-form">
+                            <div class="form-group">
+                                <label for="site-title">Название сайта:</label>
+                                <input type="text" id="site-title" value="winner.to">
+                            </div>
+                            <div class="form-group">
+                                <label for="site-description">Описание сайта:</label>
+                                <textarea id="site-description" rows="3">Сообщество CS2 нового поколения</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="admin-password-change">Смена пароля админа:</label>
+                                <input type="password" id="admin-password-change" placeholder="Новый пароль">
+                            </div>
+                            <div class="form-group">
+                                <label for="admin-password-confirm">Подтверждение пароля:</label>
+                                <input type="password" id="admin-password-confirm" placeholder="Повторите пароль">
+                            </div>
+                            <button class="btn btn-neon" id="save-settings-btn">Сохранить настройки</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#home">Главная</a>
+            <a href="#vip">VIP</a>
+            <a href="#servers">Сервера</a>
+            <a href="#contacts">Контакты</a>
+            <a href="#admin">Админ-панель</a>
+        </div>
+        <div class="copyright">
+            &copy; 2023 winner.to - Сообщество CS2. Все права защищены.
+        </div>
+    </footer>
+
+    <!-- Modal for success messages -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Успешно!</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <p id="successMessage">Изменения сохранены!</p>
+            <button class="btn btn-neon" style="margin-top: 1rem;" id="closeSuccessModal">OK</button>
+        </div>
+    </div>
+
+    <script>
+        // Данные серверов (хранятся в localStorage)
+        let servers = {
+            server1: {
+                name: "BunnyHop Pro",
+                ip: "winner.to:27015",
+                desc: "Сервер с продвинутым баннихопом и тренировками",
+                status: "online",
+                players: 12
+            },
+            server2: {
+                name: "DeathMatch VIP",
+                ip: "winner.to:27016",
+                desc: "Эксклюзивный DM для VIP игроков с улучшениями",
+                status: "online",
+                players: 24
+            },
+            server3: {
+                name: "Survival Escape",
+                ip: "winner.to:27017",
+                desc: "Выживание с артефактами и уникальными модами",
+                status: "online",
+                players: 32
+            }
+        };
+
+        // Загрузить данные из localStorage при загрузке страницы
+        function loadServersFromStorage() {
+            const savedServers = localStorage.getItem('winner-to-servers');
+            if (savedServers) {
+                servers = JSON.parse(savedServers);
+                updateServersDisplay();
+            }
+        }
+
+        // Сохранить данные в localStorage
+        function saveServersToStorage() {
+            localStorage.setItem('winner-to-servers', JSON.stringify(servers));
+        }
+
+        // Обновить отображение серверов на сайте
+        function updateServersDisplay() {
+            // Сервер 1
+            document.getElementById('server1-name').textContent = servers.server1.name;
+            document.getElementById('server1-ip').textContent = servers.server1.ip;
+            document.getElementById('server1-desc').textContent = servers.server1.desc;
+            document.getElementById('server1-players').textContent = servers.server1.players;
+            document.getElementById('server1-status').textContent = servers.server1.status === 'online' ? '● ONLINE' : '● OFFLINE';
+            document.getElementById('server1-status').className = `server-status ${servers.server1.status === 'online' ? 'status-online' : 'status-offline'}`;
+            
+            // Сервер 2
+            document.getElementById('server2-name').textContent = servers.server2.name;
+            document.getElementById('server2-ip').textContent = servers.server2.ip;
+            document.getElementById('server2-desc').textContent = servers.server2.desc;
+            document.getElementById('server2-players').textContent = servers.server2.players;
+            document.getElementById('server2-status').textContent = servers.server2.status === 'online' ? '● ONLINE' : '● OFFLINE';
+            document.getElementById('server2-status').className = `server-status ${servers.server2.status === 'online' ? 'status-online' : 'status-offline'}`;
+            
+            // Сервер 3
+            document.getElementById('server3-name').textContent = servers.server3.name;
+            document.getElementById('server3-ip').textContent = servers.server3.ip;
+            document.getElementById('server3-desc').textContent = servers.server3.desc;
+            document.getElementById('server3-players').textContent = servers.server3.players;
+            document.getElementById('server3-status').textContent = servers.server3.status === 'online' ? '● ONLINE' : '● OFFLINE';
+            document.getElementById('server3-status').className = `server-status ${servers.server3.status === 'online' ? 'status-online' : 'status-offline'}`;
+
+            // Обновить кнопки копирования IP
+            document.querySelectorAll('.copy-ip-btn').forEach(btn => {
+                const serverNum = btn.closest('.server-card').dataset.server;
+                btn.dataset.ip = servers[`server${serverNum}`].ip;
+            });
+        }
+
+        // Инициализация данных админ-панели
+        function initAdminPanel() {
+            // Заполнить поля редактирования текущими значениями
+            document.getElementById('edit-server1-name').value = servers.server1.name;
+            document.getElementById('edit-server1-ip').value = servers.server1.ip;
+            document.getElementById('edit-server1-desc').value = servers.server1.desc;
+            document.getElementById('edit-server1-status').value = servers.server1.status;
+            document.getElementById('edit-server1-players').value = servers.server1.players;
+            
+            document.getElementById('edit-server2-name').value = servers.server2.name;
+            document.getElementById('edit-server2-ip').value = servers.server2.ip;
+            document.getElementById('edit-server2-desc').value = servers.server2.desc;
+            document.getElementById('edit-server2-status').value = servers.server2.status;
+            document.getElementById('edit-server2-players').value = servers.server2.players;
+            
+            document.getElementById('edit-server3-name').value = servers.server3.name;
+            document.getElementById('edit-server3-ip').value = servers.server3.ip;
+            document.getElementById('edit-server3-desc').value = servers.server3.desc;
+            document.getElementById('edit-server3-status').value = servers.server3.status;
+            document.getElementById('edit-server3-players').value = servers.server3.players;
+        }
+
+        // Показать модальное окно с сообщением
+        function showSuccessModal(message) {
+            document.getElementById('successMessage').textContent = message;
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        // Основной код при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загрузить данные серверов
+            loadServersFromStorage();
+            initAdminPanel();
+
+            // Прокрутка к оплате при нажатии на кнопку покупки
+            document.querySelectorAll('.buy-btn').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const vipName = this.getAttribute('data-vip');
+                    const vipPeriod = this.getAttribute('data-period');
+                    const vipPrice = this.getAttribute('data-price');
+                    
+                    document.getElementById('selected-vip-name').textContent = vipName;
+                    document.getElementById('selected-vip-period').textContent = vipPeriod;
+                    document.getElementById('selected-vip-price').textContent = vipPrice;
+                    
+                    document.getElementById('selected-vip-info').style.display = 'block';
+                    
+                    document.getElementById('payment').scrollIntoView({behavior: 'smooth'});
+                    
+                    document.getElementById('payment').classList.add('highlight');
+                    setTimeout(() => {
+                        document.getElementById('payment').classList.remove('highlight');
+                    }, 6000);
+                });
+            });
+
+            // Steam авторизация
+            document.getElementById('steam-login').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Для полной функциональности сайта необходимо реализовать Steam OpenID авторизацию на бэкенде.');
+            });
+
+            // Копирование IP адреса
+            document.querySelectorAll('.copy-ip-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const ip = this.getAttribute('data-ip');
+                    navigator.clipboard.writeText(ip).then(() => {
+                        const originalText = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check"></i> IP скопирован!';
+                        this.classList.add('btn-neon');
+                        this.classList.remove('btn-outline');
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.classList.remove('btn-neon');
+                            this.classList.add('btn-outline');
+                        }, 2000);
+                    });
+                });
+            });
+
+            // Админ-авторизация
+            document.getElementById('admin-login-btn').addEventListener('click', function() {
+                const login = document.getElementById('admin-login').value;
+                const password = document.getElementById('admin-password').value;
+                
+                // По умолчанию: admin / admin123
+                if (login === 'admin' && password === 'admin123') {
+                    document.getElementById('admin-login-section').style.display = 'none';
+                    document.getElementById('admin-content').style.display = 'block';
+                    
+                    // Установить флаг авторизации
+                    sessionStorage.setItem('admin-authenticated', 'true');
+                } else {
+                    alert('Неверный логин или пароль! По умолчанию: admin / admin123');
+                }
+            });
+
+            // Проверить авторизацию при заходе на вкладку админки
+            document.getElementById('admin-link').addEventListener('click', function(e) {
+                if (!sessionStorage.getItem('admin-authenticated')) {
+                    e.preventDefault();
+                    document.getElementById('admin').scrollIntoView({behavior: 'smooth'});
+                    setTimeout(() => {
+                        document.getElementById('admin-login').focus();
+                    }, 500);
+                }
+            });
+
+            // Переключение вкладок админ-панели
+            document.querySelectorAll('.admin-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Убрать активный класс со всех вкладок
+                    document.querySelectorAll('.admin-tab').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    
+                    // Убрать активный класс со всех контентов
+                    document.querySelectorAll('.admin-content').forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    
+                    // Добавить активный класс текущей вкладке
+                    this.classList.add('active');
+                    
+                    // Показать соответствующий контент
+                    const tabId = this.getAttribute('data-tab');
+                    document.getElementById(`tab-${tabId}`).classList.add('active');
+                });
+            });
+
+            // Сохранение настроек серверов
+            document.querySelectorAll('.save-server-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const serverNum = this.getAttribute('data-server');
+                    const serverKey = `server${serverNum}`;
+                    
+                    // Получить новые значения из полей ввода
+                    servers[serverKey] = {
+                        name: document.getElementById(`edit-server${serverNum}-name`).value,
+                        ip: document.getElementById(`edit-server${serverNum}-ip`).value,
+                        desc: document.getElementById(`edit-server${serverNum}-desc`).value,
+                        status: document.getElementById(`edit-server${serverNum}-status`).value,
+                        players: parseInt(document.getElementById(`edit-server${serverNum}-players`).value)
+                    };
+                    
+                    // Сохранить в localStorage
+                    saveServersToStorage();
+                    
+                    // Обновить отображение на сайте
+                    updateServersDisplay();
+                    
+                    // Показать сообщение об успехе
+                    showSuccessModal(`Настройки сервера "${servers[serverKey].name}" сохранены!`);
+                });
+            });
+
+            // Выдача VIP
+            document.getElementById('grant-vip-btn').addEventListener('click', function() {
+                const steamId = document.getElementById('vip-steamid').value;
+                const vipType = document.getElementById('vip-type').value;
+                const vipPeriod = document.getElementById('vip-period').value;
+                const comment = document.getElementById('vip-comment').value;
+                
+                if (!steamId) {
+                    alert('Введите Steam ID игрока!');
+                    return;
+                }
+                
+                // Сохранить историю выдачи
+                const vipHistory = JSON.parse(localStorage.getItem('winner-to-vip-history') || '[]');
+                const newRecord = {
+                    id: Date.now(),
+                    steamId: steamId,
+                    vipType: vipType,
+                    period: vipPeriod,
+                    comment: comment,
+                    date: new Date().toLocaleString('ru-RU'),
+                    admin: 'admin'
+                };
+                
+                vipHistory.unshift(newRecord);
+                localStorage.setItem('winner-to-vip-history', JSON.stringify(vipHistory));
+                
+                // Обновить историю на странице
+                updateVIPHistory();
+                
+                // Очистить поля
+                document.getElementById('vip-steamid').value = '';
+                document.getElementById('vip-comment').value = '';
+                
+                // Показать сообщение об успехе
+                showSuccessModal(`VIP выдан игроку ${steamId}!`);
+            });
+
+            // Обновление истории выдачи VIP
+            function updateVIPHistory() {
+                const vipHistory = JSON.parse(localStorage.getItem('winner-to-vip-history') || '[]');
+                const historyContainer = document.getElementById('vip-history');
+                
+                if (vipHistory.length === 0) {
+                    historyContainer.innerHTML = '<p style="color: var(--text-dim);">История пуста</p>';
+                    return;
+                }
+                
+                let html = '';
+                vipHistory.slice(0, 5).forEach(record => {
+                    const vipNames = {
+                        'low': 'Low',
+                        'nice': 'Nice',
+                        'escape': 'Escape'
+                    };
+                    
+                    const periodNames = {
+                        '2weeks': '2 недели',
+                        '1month': '1 месяц',
+                        'forever': 'Навсегда'
+                    };
+                    
+                    html += `
+                        <div class="cyber-border" style="padding: 1rem; margin-bottom: 0.5rem;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <strong>${record.steamId}</strong>
+                                <span style="color: var(--neon-cyan);">${vipNames[record.vipType]}</span>
+                            </div>
+                            <div style="font-size: 0.9rem; color: var(--text-dim); margin-top: 0.5rem;">
+                                ${periodNames[record.period]} • ${record.date}
+                            </div>
+                            ${record.comment ? `<div style="font-size: 0.9rem; margin-top: 0.5rem;">${record.comment}</div>` : ''}
+                        </div>
+                    `;
+                });
+                
+                historyContainer.innerHTML = html;
+            }
+
+            // Загрузить историю VIP при загрузке страницы
+            updateVIPHistory();
+
+            // Сохранение общих настроек
+            document.getElementById('save-settings-btn').addEventListener('click', function() {
+                const newPassword = document.getElementById('admin-password-change').value;
+                const confirmPassword = document.getElementById('admin-password-confirm').value;
+                
+                if (newPassword && newPassword === confirmPassword) {
+                    // В реальном проекте здесь должен быть запрос на сервер
+                    alert('Пароль изменен! Новый пароль: ' + newPassword);
+                }
+                
+                // Сохранить другие настройки
+                const settings = {
+                    siteTitle: document.getElementById('site-title').value,
+                    siteDescription: document.getElementById('site-description').value
+                };
+                
+                localStorage.setItem('winner-to-settings', JSON.stringify(settings));
+                
+                // Показать сообщение об успехе
+                showSuccessModal('Настройки сайта сохранены!');
+                
+                // Очистить поля паролей
+                document.getElementById('admin-password-change').value = '';
+                document.getElementById('admin-password-confirm').value = '';
+            });
+
+            // Закрытие модальных окон
+            document.querySelectorAll('.close-modal, #closeSuccessModal').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.getElementById('successModal').style.display = 'none';
+                });
+            });
+
+            // Закрытие модального окна при клике вне его
+            window.addEventListener('click', function(e) {
+                if (e.target === document.getElementById('successModal')) {
+                    document.getElementById('successModal').style.display = 'none';
+                }
+            });
+
+            // Плавная прокрутка по якорным ссылкам
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Изменение активного пункта меню при прокрутке
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const navLinks = document.querySelectorAll('nav a');
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if(pageYOffset >= (sectionTop - 200)) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if(link.getAttribute('href') === `#${currentSection}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
